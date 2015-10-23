@@ -1,7 +1,29 @@
+body {
+            background-color: black;
+        }
+        
+        .title-color {
+            color: lime;
+            font-size:2em;
+        }
+        .about-Eva {
+             color: lime;
+            font-size:1.2em;
+        }
+        p {
+    font-family: "serifn", Times, serif;
+}
+body {text-align:center;
+}
+
 #navbar{
     text-align:center;
 }
 #navbar li{
     display:inline-block;
     border: 2px solid lime;
+}
+#navbar li:hover {
+    background-color: lime;
+    font-size:1.3em;
 }
