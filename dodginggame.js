@@ -1,6 +1,5 @@
 var mycanvas = document.getElementById("mycanvas");
-var ctx = mycanvas.getContext("2d");
-
+var ctx = mycanvas.getContext("2d"); //test in 3D
 var box = {
     xPos: 20,
     yPos: 50,
@@ -21,14 +20,14 @@ var box = {
         }
         if(box.goDown && box.yPos < 480){
             box.yPos += 5;    
-        }   //added boundaries ^^^^^
+        }
         console.log(box.xPos);
         
     },
     draw: function(){
         ctx.rect(box.xPos,box.yPos,20,20);
         ctx.stroke();
-   
+  
     }
 }
 
@@ -61,17 +60,27 @@ document.addEventListener("keyup", function(evt){
     if(evt.keyCode === 40){
         box.goDown = false;        
     }    
-    
 })
 
 function gameLoop(){
     ctx.beginPath();
-  // ctx.clearRect(0,0,mycanvas.width,mycanvas.height);
+   ctx.clearRect(0,0,mycanvas.width,mycanvas.height);
     box.move();
     box.draw();
-    window.requestAnimationFrame(gameLoop);
-    var c=document.getElementById("myCanvas");
-
+function changeCanvasSize() {
+    var gameCanvas = document.getElementById("gameCanvas");
+    var avatarImage = new Image();
+         
+   gameCanvas.width = 600;
+    gameCanvas.height = 600;
     
+    avatarImage.src = "img/avatar.png";
+   gameCanvas.getContext("2d").drawImage(avatarImage, 0, 0);
+   gameCanvas.getContext("2d").drawImage(avatarImage, 100, 50);
+
+
+}    
+window.requestAnimationFrame(gameLoop);
 }
+
 gameLoop();
