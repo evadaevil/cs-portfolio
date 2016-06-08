@@ -1,6 +1,8 @@
+//
 var mycanvas = document.getElementById("mycanvas");
 var ctx = mycanvas.getContext("2d");
 
+//
 var box = {
     xPos: 20,
     yPos: 50,
@@ -25,6 +27,7 @@ var box = {
         console.log(box.xPos);
         
     },
+    //
     draw: function(){
         ctx.rect(box.xPos,box.yPos,20,20);
         ctx.stroke();
@@ -32,6 +35,7 @@ var box = {
     }
 }
 
+//
 document.addEventListener("keydown", function(evt){
     if(evt.keyCode === 37){
         box.goLeft = true;
@@ -48,6 +52,7 @@ document.addEventListener("keydown", function(evt){
     
 });
 
+//
 document.addEventListener("keyup", function(evt){
     if(evt.keyCode === 37){
         box.goLeft = false;

@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<html>
+    <title>Vindinium page</title>
+     <link rel="stylesheet" href="vindpage.css" type="text/css" />
+    <body>For my vindinium game I attempted to make a bot, the following is the
+    code: <br> </br>var Bot = require('bot');<br>
+var PF = require('pathfinding'); </br>
+var bot = new Bot('x6di21vd', 'training', 'http://vindinium.org'); //Put your 
+bot's code here and change training to Arena when you want to fight others.<br>
+// var bot = new Bot('x6di21vd', 'arena', ‘http://52.53.211.7:9000'); //Put your
+bot's code here and change training to Arena when you want to fight others.</br>
+var goDir;<br>
+var Promise = require('bluebird');</br>
+Bot.prototype.botBrain = function() { <br>
+    return new Promise(function(resolve, reject) { </br>
+        _this = bot; <br>
+        //////* Write your bot below Here *////// </br>
+        //////* Set `myDir` in the direction you want to go and then bot.goDir 
+        is set to myDir at the bottom *//////// <br>
+</br>
+        /*                                      * 
+         * This Code is global data!            *
+         *                                      */
+        // Set myDir to what you want and it will set bot.goDir to that 
+        direction at the end.  Unless it is "none" </br>
+        var myDir; <br>
+        var myPos = [bot.yourBot.pos.x, bot.yourBot.pos.y]; </br>
+<br>
+</br>
+        // This code is to program the enemy bots <br>
+        var enemyBots = [];</br>
+        if(bot.yourBot.id != 1) enemyBots.push(bot.bot1);<br>
+        if(bot.yourBot.id != 2) enemyBots.push(bot.bot2);</br>
+        if(bot.yourBot.id != 3) enemyBots.push(bot.bot3);<br>
+        if(bot.yourBot.id != 4) enemyBots.push(bot.bot4);</br>
+<br>
+</br>
+        /*                                      * <br>
+         * This Code Decides WHAT to do         *</br>
+         *                                      */<br>
+     var task;</br>
+     <br>
+     //health </br>
+     if (bot.yourBot <= 40) { <br>
+         task = "low health"; </br>
+    } <br>
+    else { </br> 
+        task = "freeminies"; //this code determines the tavern part <br>
+    }   </br>
+<br>
+</br>
+<br>
+        /*                                      * </br>
+         * This Code Determines HOW to do it  <br>
+         *                                      */</br>
+     <br>
+        // This code is to program the bot to find the nearest free mine and
+        sets myDir toward that 
+        direction // </br>
+        if(task === "freemines") {<br>
+            var closestMine = bot.freeMines[0]; </br>
+            for(i = 0; i < bot.freeMines.length; i++) { <br>
+                if(bot.findDistance(myPos, closestMine) > bot.findDistance(myPos, bot.freeMines[i])) { </br>
+                    closestMine = bot.freeMines[i];<br>
+                }</br>
+            }<br>
+            console.log("Claiming a Free Mine!"); </br>
+            myDir = bot.findPath(myPos, closestMine);<br>
+        }</br>
+<br>
+        //This code is to program the bot to attack the enemy bots. </br>
+        if(task = "attack"){ <br>
+            console.log("attacking Nearest Bot!")</br>
+            myDir = bot.findPath(myPos, [closestBot.pos.x , closestBot.pos.y]); <br>
+        }</br>
+<br>
+        /*   * </br>
+         * This Code Sets your direction based on myDir.  If you are trying to
+         go to a place that you can't reach, you move randomly.   * <br>
+         * Otherwise you move in the direction set by your code.  Feel free to 
+         change this code if you want.                            */ </br>
+        if(myDir === "none") { <br>
+            console.log("Going Random!"); </br>
+            var rand = Math.floor(Math.random() * 4); <br>
+            var dirs = ["north", "south", "east", "west"];</br>
+            bot.goDir = dirs[rand];<br>
+        } else {</br>
+            bot.goDir = myDir; <br>
+        }</br>
+<br>
+</br>
+        ///////////* DON'T REMOVE ANTYTHING BELOW THIS LINE *//////////////<br>
+        resolve();</br>
+    });<br>
+}</br>
+bot.runGame(); </body> <br> </br> <br> <tittle>What is Vindinium?</tittle></br><br>
+<body> The object of Vindiuium is to program a bot to earn <br> the most gold.
+In this game you can program your bot</br> to attack other enemies, go to the
+tavern to regain health, <br> and collect gold from the mines.
+  To regain health yor bot<br> must go 
+to the tavern and drink 
+a soda.  <br></br><br>
+
+<tittle> My Vindinium code</tittle><br></br>My Vindinium code is to program 
+the bots and to program <br>what they do.  My bot is 
+supposed to attack enemy players<br> who are nearby.  When the bot's 
+healther is low they should go <br>to the nearest tavern to drink the soda 
+so they can then regain</br> their health from the soda.
+Also they shoul be going to the <br>nearest mines to mine gold.</br>  <br> </br>
+
+<tittle>What I learned</tittle><br></br>My bot did not do what 
+I wanted it to, I don't even know what<br> I was doing because I did not 
+understand how to program AI to</br> make it do what I wanted it to. 
+Programming an AI is a very <br>complicated thing to do and it takes a lot
+of time and patience.  <br>My opinion on AI has changed because I realized 
+how hard it is </br>
+to create an AI and make it successfully do what you want it to.</body>
+</html>
